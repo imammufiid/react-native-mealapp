@@ -3,15 +3,16 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 interface CategoryGridTileProps {
   title: string
   color: string
+  onPress: () => void
 }
 
 export const CategoryGridTile = (props: CategoryGridTileProps) => {
-  const {title, color} = props
+  const {title, color, onPress} = props
 
   return (
     <TouchableOpacity
       style={[styles.button, {backgroundColor: color}]}
-      onPress={() => null}>
+      onPress={onPress}>
       <View style={styles.innerContainer}>
         <Text style={styles.title}>{title}</Text>
       </View>
