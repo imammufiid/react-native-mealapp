@@ -1,19 +1,26 @@
-import {FlatList, ListRenderItemInfo, StyleSheet, Text, View} from "react-native";
+import {FlatList, ListRenderItemInfo, StyleSheet, View} from "react-native";
 import {Category} from "@models/Category";
 import {MEALS} from "@data/dummy-data";
 import {Meal} from "@models/Meal";
 import {MealItem} from "@components/MealItem";
+import {useLayoutEffect} from "react";
 
 export interface MealsOverviewScreenParam {
   category: Category
 }
 
 export const MealsOverviewScreen = (props: any) => {
-  const {route} = props
+  const {route, navigation} = props
   const params = route.params as MealsOverviewScreenParam
   const displayedMeals = MEALS.filter((meal) => {
     return meal.categoryIds.indexOf(params.category.id) >= 0
   })
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: params.category.title
+    })
+  }, [params, navigation])
 
   const renderMealItem = (itemData: ListRenderItemInfo<Meal>) => {
     return <MealItem meal={itemData.item}/>
