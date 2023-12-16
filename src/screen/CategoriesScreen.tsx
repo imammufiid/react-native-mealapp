@@ -2,16 +2,23 @@ import {FlatList, ListRenderItemInfo, SafeAreaView} from "react-native";
 import {CATEGORIES} from "@data/dummy-data";
 import {Category} from "@models/Category";
 import {CategoryGridTile} from "@components/CategoryGridTile";
+import {MealsOverviewScreenParam} from "./MealsOverviewScreen";
 
 
 export const CategoriesScreen = (props: any) => {
   const {navigation} = props
+
   const renderCategoryItem = (itemData: ListRenderItemInfo<Category>) => {
+    const {item} = itemData
     const pressHandler = () => {
-      navigation.navigate('Detail')
+
+      const param: MealsOverviewScreenParam = {
+        category: item
+      };
+
+      navigation.navigate('Detail', param)
     }
 
-    const {item} = itemData
     return <CategoryGridTile
       title={item.title}
       color={item.color}
