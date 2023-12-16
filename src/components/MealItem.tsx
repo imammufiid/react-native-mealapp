@@ -1,12 +1,23 @@
 import {Image, Platform, Pressable, StyleSheet, Text, View} from "react-native";
 import {Meal} from "@models/Meal";
+import {useNavigation} from '@react-navigation/native';
+import {ParamList, StackNavigation} from "@/navigation/Utils";
+import ROUTES_NAMED from "@/navigation/Routes";
 
-export interface MealItemParam {
+export interface MealItemParam extends ParamList {
   meal: Meal
 }
 
 export const MealItem = (props: MealItemParam) => {
   const {meal} = props
+  const navigation = useNavigation<StackNavigation>()
+  const onPressHandler = () => {
+    const param: MealItemParam = {
+      meal: meal
+    };
+
+    navigation.navigate(ROUTES_NAMED.MEAL_DETAIL, param)
+  }
 
   return (
     <View style={styles.melItem}>
@@ -14,7 +25,8 @@ export const MealItem = (props: MealItemParam) => {
         android_ripple={{color: '#CCC'}}
         style={({pressed}) =>
           pressed ? styles.buttonPressed : null
-        }>
+        }
+        onPress={onPressHandler}>
         <View style={styles.innerContainer}>
           <View>
             <Image

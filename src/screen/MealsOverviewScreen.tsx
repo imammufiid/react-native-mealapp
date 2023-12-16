@@ -4,8 +4,9 @@ import {MEALS} from "@data/dummy-data";
 import {Meal} from "@models/Meal";
 import {MealItem} from "@components/MealItem";
 import {useLayoutEffect} from "react";
+import {ParamList} from "@/navigation/Utils";
 
-export interface MealsOverviewScreenParam {
+export interface MealsOverviewScreenParam extends ParamList {
   category: Category
 }
 

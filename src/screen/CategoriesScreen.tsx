@@ -3,6 +3,7 @@ import {CATEGORIES} from "@data/dummy-data";
 import {Category} from "@models/Category";
 import {CategoryGridTile} from "@components/CategoryGridTile";
 import {MealsOverviewScreenParam} from "./MealsOverviewScreen";
+import ROUTES_NAMED from "@/navigation/Routes";
 
 
 export const CategoriesScreen = (props: any) => {
@@ -16,7 +17,7 @@ export const CategoriesScreen = (props: any) => {
         category: item
       };
 
-      navigation.navigate('Detail', param)
+      navigation.navigate(ROUTES_NAMED.MEAL_OVERVIEW, param)
     }
 
     return <CategoryGridTile
