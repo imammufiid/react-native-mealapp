@@ -3,6 +3,7 @@ import {Meal} from "@models/Meal";
 import {useNavigation} from '@react-navigation/native';
 import {ParamList, StackNavigation} from "@/navigation/Utils";
 import ROUTES_NAMED from "@/navigation/Routes";
+import {MealDetails} from "@components/MealDetails";
 
 export interface MealItemParam extends ParamList {
   meal: Meal
@@ -37,11 +38,7 @@ export const MealItem = (props: MealItemParam) => {
               {meal.title}
             </Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>{meal.duration}m</Text>
-            <Text style={styles.detailItem}>{meal.complexity.toUpperCase()}</Text>
-            <Text style={styles.detailItem}>{meal.affordability.toUpperCase()}</Text>
-          </View>
+          <MealDetails meal={meal}/>
         </View>
       </Pressable>
     </View>
@@ -76,16 +73,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 18
-  },
-  details: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 9
-  },
-  detailItem: {
-    marginHorizontal: 4,
-    fontSize: 12
   },
   buttonPressed: {
     opacity: 0.5
