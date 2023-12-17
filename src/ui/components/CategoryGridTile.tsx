@@ -1,4 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Colors} from "@/utils/constants/color";
 
 interface CategoryGridTileProps {
   title: string
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 8,
     elevation: 4,
-    shadowColor: 'white',
+    shadowColor: Colors.white,
     shadowOpacity: 0.25,
     shadowOffset: {
       width: 0,

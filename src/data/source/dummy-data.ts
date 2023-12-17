@@ -1,5 +1,5 @@
-import {Category} from "@models/Category";
-import {Meal} from "@models/Meal";
+import {Category} from "@data/models/Category";
+import {Meal} from "@data/models/Meal";
 
 
 export const CATEGORIES = [

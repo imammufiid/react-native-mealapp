@@ -1,4 +1,5 @@
 import {View, Text, StyleSheet} from "react-native";
+import {Colors} from "@/utils/constants/color";
 
 interface SubtitleProps {
   title: string,
@@ -18,14 +19,14 @@ export const Subtitle = (props: SubtitleProps) => {
 
 const styles = StyleSheet.create({
   subtitle: {
-    color: '#E2B497',
+    color: Colors.lightBrown,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   subtitleContainer: {
     margin: 4,
-    borderBottomColor: '#E2B497',
+    borderBottomColor: Colors.lightBrown,
     borderBottomWidth: 2,
     marginHorizontal: 12,
     padding: 6,

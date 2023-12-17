@@ -1,11 +1,12 @@
-import {CategoriesScreen} from "@/screen/CategoriesScreen";
+import {CategoriesScreen} from "@/ui/screen/CategoriesScreen";
 import {StatusBar} from "expo-status-bar";
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {MealsOverviewScreen} from "@/screen/MealsOverviewScreen";
-import {MealDetailScreen} from "@/screen/MealDetailScreen";
+import {MealsOverviewScreen} from "@/ui/screen/MealsOverviewScreen";
+import {MealDetailScreen} from "@/ui/screen/MealDetailScreen";
 import {RootStackParamList} from "@/navigation/Utils";
 import ROUTES_NAMED from "@/navigation/Routes";
+import {Colors} from "@/utils/constants/color";
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -16,10 +17,10 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerStyle: {backgroundColor: '#351401'},
-            headerTintColor: 'white',
+            headerStyle: {backgroundColor: Colors.darknessBrown},
+            headerTintColor: Colors.white,
             contentStyle: {
-              backgroundColor: '#3F2F25'
+              backgroundColor: Colors.darkBrown
             }
           }}>
           <Stack.Screen

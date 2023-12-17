@@ -1,19 +1,20 @@
 import {Image, Platform, Pressable, StyleSheet, Text, View} from "react-native";
-import {Meal} from "@models/Meal";
+import {Meal} from "@data/models/Meal";
 import {useNavigation} from '@react-navigation/native';
-import {ParamList, StackNavigation} from "@/navigation/Utils";
+import {BaseProps, StackNavigation} from "@/navigation/Utils";
 import ROUTES_NAMED from "@/navigation/Routes";
-import {MealDetails} from "@components/MealDetails";
+import {MealDetails} from "@/ui/components/MealDetails";
+import {Colors} from "@/utils/constants/color";
 
-export interface MealItemParam extends ParamList {
+export interface MealItemProps extends BaseProps {
   meal: Meal
 }
 
-export const MealItem = (props: MealItemParam) => {
+export const MealItem = (props: MealItemProps) => {
   const {meal} = props
   const navigation = useNavigation<StackNavigation>()
   const onPressHandler = () => {
-    const param: MealItemParam = {
+    const param: MealItemProps = {
       meal: meal
     };
 
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     margin: 16,
     borderRadius: 8,
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
-    backgroundColor: 'white',
+    backgroundColor: Colors.white,
     elevation: 4,
     shadowColor: 'black',
     shadowOpacity: 0.25,

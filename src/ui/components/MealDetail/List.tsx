@@ -1,4 +1,5 @@
 import {StyleSheet, Text, View} from "react-native";
+import {Colors} from "@/utils/constants/color";
 
 interface ListProps {
   data: string[]
@@ -21,10 +22,10 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     marginVertical: 8,
     marginHorizontal: 12,
-    backgroundColor: '#E2B497'
+    backgroundColor: Colors.lightBrown
   },
   itemColor: {
-    color: '#351401',
+    color: Colors.darknessBrown,
     textAlign: 'center'
   }
 })

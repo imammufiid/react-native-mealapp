@@ -1,14 +1,15 @@
 import {Image, ScrollView, StyleSheet, Text, View} from "react-native";
-import {MealItemParam} from "@components/MealItem";
-import {MealDetails} from "@components/MealDetails";
-import {Subtitle} from "@components/MealDetail/Subtitle";
-import {List} from "@components/MealDetail/List";
+import {MealItemProps} from "@/ui/components/MealItem";
+import {MealDetails} from "@/ui/components/MealDetails";
+import {Subtitle} from "@/ui/components/MealDetail/Subtitle";
+import {List} from "@/ui/components/MealDetail/List";
 import {useLayoutEffect} from "react";
-import {IconButton} from "@components/IconButton";
+import {IconButton} from "@/ui/components/IconButton";
+import {Colors} from "@/utils/constants/color";
 
 export const MealDetailScreen = (props: any) => {
   const {route, navigation} = props
-  const {meal} = route.params as MealItemParam
+  const {meal} = route.params as MealItemProps
 
   const headerButtonPressedHandler = () => {
     console.info('Pressed')
@@ -64,10 +65,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     margin: 8,
     textAlign: 'center',
-    color: 'white'
+    color: Colors.white
   },
   detailStyle: {
-    color: 'white'
+    color: Colors.white
   },
   listOuterContainer: {
     alignItems: 'center'

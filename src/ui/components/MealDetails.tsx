@@ -1,15 +1,15 @@
 import {StyleSheet, View, Text} from "react-native";
 import React from "react";
-import {Meal} from "@models/Meal";
+import {Meal} from "@data/models/Meal";
 
-export interface MealDetailsParam {
+export interface MealDetailsProps {
   meal: Meal,
   style?: object,
   textStyle?: object,
 }
 
-export const MealDetails = (param: MealDetailsParam) => {
-  const {meal, style, textStyle} = param
+export const MealDetails = (props: MealDetailsProps) => {
+  const {meal, style, textStyle} = props
   return (
     <View style={[styles.details, style]}>
       <Text style={[styles.detailItem, textStyle]}>

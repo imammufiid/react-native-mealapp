@@ -1,12 +1,12 @@
 import {FlatList, ListRenderItemInfo, StyleSheet, View} from "react-native";
-import {Category} from "@models/Category";
-import {MEALS} from "@data/dummy-data";
-import {Meal} from "@models/Meal";
-import {MealItem} from "@components/MealItem";
+import {Category} from "@data/models/Category";
+import {MEALS} from "@data/source/dummy-data";
+import {Meal} from "@data/models/Meal";
+import {MealItem} from "@/ui/components/MealItem";
 import {useLayoutEffect} from "react";
-import {ParamList} from "@/navigation/Utils";
+import {BaseProps} from "@/navigation/Utils";
 
-export interface MealsOverviewScreenParam extends ParamList {
+export interface MealsOverviewScreenParam extends BaseProps {
   category: Category
 }
 
