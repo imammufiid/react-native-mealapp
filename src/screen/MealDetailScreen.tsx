@@ -3,10 +3,26 @@ import {MealItemParam} from "@components/MealItem";
 import {MealDetails} from "@components/MealDetails";
 import {Subtitle} from "@components/MealDetail/Subtitle";
 import {List} from "@components/MealDetail/List";
+import {useLayoutEffect} from "react";
+import {IconButton} from "@components/IconButton";
 
 export const MealDetailScreen = (props: any) => {
-  const {route} = props
+  const {route, navigation} = props
   const {meal} = route.params as MealItemParam
+
+  const headerButtonPressedHandler = () => {
+    console.info('Pressed')
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton
+          icon="star"
+          onPress={headerButtonPressedHandler}/>
+      )
+    })
+  }, [navigation, headerButtonPressedHandler])
 
   return (
     <ScrollView style={styles.scrollView}>
