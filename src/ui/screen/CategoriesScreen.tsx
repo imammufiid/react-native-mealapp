@@ -1,4 +1,4 @@
-import {FlatList, ListRenderItemInfo, SafeAreaView} from "react-native";
+import {FlatList, ListRenderItemInfo, Platform, SafeAreaView, StyleSheet} from "react-native";
 import {CATEGORIES} from "@data/source/dummy-data";
 import {Category} from "@data/models/Category";
 import {CategoryGridTile} from "@/ui/components/CategoryGridTile";
@@ -32,7 +32,7 @@ export const CategoriesScreen = (props: any) => {
    * ref: https://stackoverflow.com/questions/63424511/invariant-violation-changing-numcolumns-on-the-fly-is-not-supported-i-do-not-c
    */
   return (
-    <SafeAreaView style={{backgroundColor: Colors.darkBrown}}>
+    <SafeAreaView style={styles.root}>
       <FlatList
         key={'#'}
         data={CATEGORIES}
@@ -42,3 +42,10 @@ export const CategoriesScreen = (props: any) => {
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  root: {
+    backgroundColor: Colors.darkBrown,
+    paddingTop: Platform.OS === 'android' ? 30 : 0
+  }
+})

@@ -10,6 +10,7 @@ import {Colors} from "@/utils/constants/color";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {Ionicons} from "@expo/vector-icons";
 import {FavoriteScreen} from "@/ui/screen/FavoriteScreen";
+import {Platform} from "react-native";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -22,7 +23,9 @@ const BottomTabsNavigator = () => {
       screenOptions={{
         tabBarActiveTintColor: "white",
         tabBarStyle: {
-          backgroundColor: Colors.darknessBrown
+          backgroundColor: Colors.darknessBrown,
+          height: Platform.OS === 'android' ? 60 : 80,
+          paddingBottom: Platform.OS === 'android' ? 8 : 26
         },
       }}>
       <BottomTabs.Screen
