@@ -7,8 +7,47 @@ import {MealDetailScreen} from "@/ui/screen/MealDetailScreen";
 import {RootStackParamList} from "@/navigation/Utils";
 import ROUTES_NAMED from "@/navigation/Routes";
 import {Colors} from "@/utils/constants/color";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {Ionicons} from "@expo/vector-icons";
+import {FavoriteScreen} from "@/ui/screen/FavoriteScreen";
+
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
+const BottomTabs = createBottomTabNavigator()
+
+const BottomTabsNavigator = () => {
+  return (
+    <BottomTabs.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{
+        tabBarActiveTintColor: "white",
+        tabBarStyle: {
+          backgroundColor: Colors.darknessBrown
+        },
+      }}>
+      <BottomTabs.Screen
+        name={ROUTES_NAMED.CATEGORIES}
+        options={{
+          title: 'Categories',
+          headerShown: false,
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="list" color={color} size={size}/>
+          )
+        }}
+        component={CategoriesScreen}/>
+      <BottomTabs.Screen
+        name={ROUTES_NAMED.FAVORITE}
+        options={{
+          title: 'Favorite',
+          headerShown: false,
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="star" color={color} size={size}/>
+          )
+        }}
+        component={FavoriteScreen}/>
+    </BottomTabs.Navigator>
+  )
+}
 
 export default function App() {
   return (
@@ -24,11 +63,12 @@ export default function App() {
             }
           }}>
           <Stack.Screen
-            name={ROUTES_NAMED.CATEGORIES}
+            name={ROUTES_NAMED.BOTTOM_TABS}
             options={{
-              title: 'Categories',
+              title: 'Bottom Tabs',
+              headerShown: false
             }}
-            component={CategoriesScreen}/>
+            component={BottomTabsNavigator}/>
           <Stack.Screen
             name={ROUTES_NAMED.MEAL_OVERVIEW}
             component={MealsOverviewScreen}/>

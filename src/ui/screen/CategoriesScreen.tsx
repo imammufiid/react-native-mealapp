@@ -4,6 +4,8 @@ import {Category} from "@data/models/Category";
 import {CategoryGridTile} from "@/ui/components/CategoryGridTile";
 import {MealsOverviewScreenParam} from "./MealsOverviewScreen";
 import ROUTES_NAMED from "@/navigation/Routes";
+import {StatusBar} from "expo-status-bar";
+import {Colors} from "@/utils/constants/color";
 
 
 export const CategoriesScreen = (props: any) => {
@@ -30,7 +32,7 @@ export const CategoriesScreen = (props: any) => {
    * ref: https://stackoverflow.com/questions/63424511/invariant-violation-changing-numcolumns-on-the-fly-is-not-supported-i-do-not-c
    */
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: Colors.darkBrown}}>
       <FlatList
         key={'#'}
         data={CATEGORIES}
