@@ -11,6 +11,7 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {Ionicons} from "@expo/vector-icons";
 import {FavoriteScreen} from "@/ui/screen/FavoriteScreen";
 import {Platform} from "react-native";
+import {FavoriteProvider} from "@/store/context/favorite-context";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -56,33 +57,35 @@ export default function App() {
   return (
     <>
       <StatusBar style={'light'}/>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {backgroundColor: Colors.darknessBrown},
-            headerTintColor: Colors.white,
-            contentStyle: {
-              backgroundColor: Colors.darkBrown
-            }
-          }}>
-          <Stack.Screen
-            name={ROUTES_NAMED.BOTTOM_TABS}
-            options={{
-              title: 'Bottom Tabs',
-              headerShown: false
-            }}
-            component={BottomTabsNavigator}/>
-          <Stack.Screen
-            name={ROUTES_NAMED.MEAL_OVERVIEW}
-            component={MealsOverviewScreen}/>
-          <Stack.Screen
-            name={ROUTES_NAMED.MEAL_DETAIL}
-            options={{
-              title: 'Meal Detail',
-            }}
-            component={MealDetailScreen}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavoriteProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {backgroundColor: Colors.darknessBrown},
+              headerTintColor: Colors.white,
+              contentStyle: {
+                backgroundColor: Colors.darkBrown
+              }
+            }}>
+            <Stack.Screen
+              name={ROUTES_NAMED.BOTTOM_TABS}
+              options={{
+                title: 'Bottom Tabs',
+                headerShown: false
+              }}
+              component={BottomTabsNavigator}/>
+            <Stack.Screen
+              name={ROUTES_NAMED.MEAL_OVERVIEW}
+              component={MealsOverviewScreen}/>
+            <Stack.Screen
+              name={ROUTES_NAMED.MEAL_DETAIL}
+              options={{
+                title: 'Meal Detail',
+              }}
+              component={MealDetailScreen}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoriteProvider>
     </>
   );
 }
