@@ -1,21 +1,21 @@
 import {createContext, useState} from "react";
 
 export type FavoriteContextType = {
-  ids: number[];
-  addFavorite: (id: number) => void;
-  removeFavorite: (id: number) => void;
+  ids: string[];
+  addFavorite: (id: string) => void;
+  removeFavorite: (id: string) => void;
 }
 
 export const FavoriteContext = createContext<FavoriteContextType | null>(null)
 
 export const FavoriteProvider = (props: any) => {
   const {children} = props
-  const [favoriteMealIds, setFavoriteMealIds] = useState<number[]>([])
+  const [favoriteMealIds, setFavoriteMealIds] = useState<string[]>([])
 
-  const addFavorite = (id: number) => {
+  const addFavorite = (id: string) => {
     setFavoriteMealIds((prevState) => [...prevState, id])
   }
-  const removeFavorite = (id: number) => {
+  const removeFavorite = (id: string) => {
     setFavoriteMealIds((prevState) =>
       prevState.filter(mealId => mealId !== id)
     )
