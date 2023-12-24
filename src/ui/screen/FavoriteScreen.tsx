@@ -1,32 +1,41 @@
-import {useContext} from "react";
-import {FavoriteContext} from "@/store/context/favorite-context";
 import {Meals} from "@/ui/components/Meals/Meals";
 import {MEALS} from "@data/source/dummy-data";
-import {StyleSheet, Text, View} from "react-native";
+import {Platform, SafeAreaView, StyleSheet, Text, View} from "react-native";
 import {Colors} from "@/utils/constants/color";
+import {useSelector} from "react-redux";
+import {RootState} from "@/store/redux/store";
 
 export const FavoriteScreen = () => {
-  const favoriteMealContext = useContext(FavoriteContext)
+  const favoriteMealIds = useSelector((state: RootState) => state.favoriteMeals.ids)
 
   const favoriteMeals = MEALS.filter(meal => {
-    if (favoriteMealContext === null) return false
-    return favoriteMealContext.ids.includes(meal.id)
+    return favoriteMealIds.includes(meal.id)
   })
 
-  if (favoriteMealContext === null || favoriteMeals.length === 0) {
+  if (favoriteMeals.length === 0) {
     return (
-      <View style={styles.rootContainer}>
-        <Text style={styles.text}>You have no favorite meals yet.</Text>
-      </View>
+      <SafeAreaView style={styles.root}>
+        <View style={styles.rootContainer}>
+          <Text style={styles.text}>You have no favorite meals yet.</Text>
+        </View>
+      </SafeAreaView>
     )
   }
 
-  return <Meals items={favoriteMeals}/>
+  return (
+    <SafeAreaView style={styles.root}>
+      <Meals items={favoriteMeals}/>
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
-  rootContainer: {
+  root: {
     flex: 1,
+    backgroundColor: Colors.darkBrown,
+    paddingTop: Platform.OS === 'android' ? 30 : 0
+  },
+  rootContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },

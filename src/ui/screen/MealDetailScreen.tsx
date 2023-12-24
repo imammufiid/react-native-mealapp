@@ -3,25 +3,31 @@ import {MealItemProps} from "@/ui/components/MealItem";
 import {MealDetails} from "@/ui/components/MealDetails";
 import {Subtitle} from "@/ui/components/MealDetail/Subtitle";
 import {List} from "@/ui/components/MealDetail/List";
-import {useContext, useLayoutEffect} from "react";
+import {useLayoutEffect} from "react";
 import {IconButton} from "@/ui/components/IconButton";
 import {Colors} from "@/utils/constants/color";
-import {FavoriteContext, FavoriteContextType} from "@/store/context/favorite-context";
+import {useDispatch, useSelector} from "react-redux";
+import {addFavorite, FavoriteActionPayload, removeFavorite} from "@/store/redux/favorite";
+import {RootState} from "@/store/redux/store";
 
 export const MealDetailScreen = (props: any) => {
   const {route, navigation} = props
   const {meal} = route.params as MealItemProps
-  const favoriteMealContext = useContext(FavoriteContext)
-  const mealIsFavorite = favoriteMealContext?.ids.includes(meal.id) ?? false
+
+  const favoriteMealIds = useSelector((state: RootState) => state.favoriteMeals.ids)
+  const mealIsFavorite = favoriteMealIds.includes(meal.id) ?? false
+  const dispatch = useDispatch()
 
   const headerButtonPressedHandler = () => {
-    if (favoriteMealContext === null) return
+    const payload: FavoriteActionPayload = {
+      id: meal.id
+    }
 
     if (mealIsFavorite) {
-      favoriteMealContext.removeFavorite(meal.id)
+      dispatch(removeFavorite(payload))
       return
     }
-    favoriteMealContext.addFavorite(meal.id)
+    dispatch(addFavorite(payload))
   }
 
   useLayoutEffect(() => {

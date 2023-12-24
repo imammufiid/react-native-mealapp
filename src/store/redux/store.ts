@@ -6,3 +6,5 @@ export const store = configureStore({
     favoriteMeals: favoriteReducer
   }
 })
+
+export type RootState = ReturnType<typeof store.getState>

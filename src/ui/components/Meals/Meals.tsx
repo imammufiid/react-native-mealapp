@@ -3,7 +3,7 @@ import {Meal} from "@data/models/Meal";
 import {MealItem} from "@/ui/components/MealItem";
 
 interface MealsProps {
-  items: Meal[]
+  items: Meal[],
 }
 
 export const Meals = (props: MealsProps) => {
@@ -26,6 +26,6 @@ export const Meals = (props: MealsProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16
+    paddingHorizontal: 16
   }
 })
