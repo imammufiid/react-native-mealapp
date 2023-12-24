@@ -1,10 +1,9 @@
-import {FlatList, ListRenderItemInfo, StyleSheet, View} from "react-native";
+import {StyleSheet} from "react-native";
 import {Category} from "@data/models/Category";
 import {MEALS} from "@data/source/dummy-data";
-import {Meal} from "@data/models/Meal";
-import {MealItem} from "@/ui/components/MealItem";
 import {useLayoutEffect} from "react";
 import {BaseProps} from "@/navigation/Utils";
+import {Meals} from "@/ui/components/Meals/Meals";
 
 export interface MealsOverviewScreenParam extends BaseProps {
   category: Category
@@ -23,23 +22,5 @@ export const MealsOverviewScreen = (props: any) => {
     })
   }, [params, navigation])
 
-  const renderMealItem = (itemData: ListRenderItemInfo<Meal>) => {
-    return <MealItem meal={itemData.item}/>
-  }
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMealItem}/>
-    </View>
-  )
+  return <Meals items={displayedMeals}/>
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16
-  }
-})
