@@ -11,7 +11,8 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {Ionicons} from "@expo/vector-icons";
 import {FavoriteScreen} from "@/ui/screen/FavoriteScreen";
 import {Platform} from "react-native";
-import {FavoriteProvider} from "@/store/context/favorite-context";
+import {Provider} from "react-redux";
+import {store} from './src/store/redux/store'
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -57,7 +58,7 @@ export default function App() {
   return (
     <>
       <StatusBar style={'light'}/>
-      <FavoriteProvider>
+      <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
@@ -85,7 +86,7 @@ export default function App() {
               component={MealDetailScreen}/>
           </Stack.Navigator>
         </NavigationContainer>
-      </FavoriteProvider>
+      </Provider>
     </>
   );
 }
